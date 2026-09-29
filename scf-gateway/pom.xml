@@ -36,5 +36,13 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-gateway</artifactId>
         </dependency>
+
+        <!-- Sa-Token 权限认证 -->
+        <!-- 网关是 WebFlux，必须用 reactor 版 -->
+        <dependency>
+            <groupId>cn.dev33</groupId>
+            <artifactId>sa-token-reactor-spring-boot3-starter</artifactId>
+            <version>1.44.0</version>
+        </dependency>
     </dependencies>
 </project>
