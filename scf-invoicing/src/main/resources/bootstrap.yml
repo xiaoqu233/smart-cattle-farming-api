@@ -1,0 +1,21 @@
+server:
+  port: 9002
+  servlet:
+    context-path: /api/invoicing
+
+spring:
+  application:
+    name: zhyz-invoicing
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      username: nacos
+      password: nacos # 账号密码改成自己的
+      discovery:
+        server-addr: localhost:8848
+        namespace: ${spring.profiles.active}
+      config:
+        server-addr: localhost:8848
+        file-extension: yaml
+        namespace : ${spring.profiles.active}

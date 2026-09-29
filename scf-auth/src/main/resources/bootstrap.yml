@@ -1,0 +1,21 @@
+server:
+  port: 9001
+  servlet:
+    context-path: /api/auth
+
+spring:
+  application:
+    name: zhyz-auth
+  profiles:
+    active: dev
+  cloud:
+    nacos:
+      username: nacos
+      password: nacos
+      discovery:
+        server-addr: localhost:8848
+        namespace: ${spring.profiles.active}
+      config:
+        server-addr: localhost:8848
+        file-extension: yaml
+        namespace : ${spring.profiles.active}

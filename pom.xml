@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.2.4</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
+    <groupId>com.jhd.scf</groupId>
+    <artifactId>smart-cattle-farming</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <modules>
+        <module>scf-auth</module>
+        <module>scf-common</module>
+        <module>scf-gateway</module>
+        <module>scf-invoicing</module>
+        <module>scf-production</module>
+        <module>scf-system</module>
+        <module>scf-user</module>
+    </modules>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <!-- Web场景启动器 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!-- Sa-Token 插件：整合SSO -->
+        <dependency>
+            <groupId>cn.dev33</groupId>
+            <artifactId>sa-token-sso</artifactId>
+            <version>1.44.0</version>
+        </dependency>
+
+        <!-- Sa-Token 插件：整合 RedisTemplate -->
+        <dependency>
+            <groupId>cn.dev33</groupId>
+            <artifactId>sa-token-redis-template</artifactId>
+            <version>1.44.0</version>
+        </dependency>
+
+        <!-- Sa-Token: 提供 Redis 连接池 -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-pool2</artifactId>
+        </dependency>
+
+        <!-- redis  -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+
+        <!-- nacos discovery -->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+        </dependency>
+
+        <!-- nacos config -->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
+        </dependency>
+
+        <!--
+    Spring Cloud项目中的一个关键组件，它主要负责在Spring Boot应用程序启动时加载Bootstrap Context。这个Bootstrap Context是
+一个独立的Spring应用上下文，与应用的主Context不同，它主要用于加载应用程序的外部配置信息。
+    这个依赖会引入一个标识类Marker，用于标识开启Bootstrap Context的支持。在Spring Boot 2.4.x及以后的版本中，如果需要使用
+bootstrap.properties或bootstrap.yaml配置文件，就必须引入这个依赖。
+-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-bootstrap</artifactId>
+            <version>3.1.4</version>
+        </dependency>
+
+        <!-- 阿里数据库连接池 -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid-spring-boot-starter</artifactId>
+            <version>1.2.20</version>
+        </dependency>
+
+        <!-- 默认情况下，Spring Boot 使用 HikariCP 作为其连接池。由于项目中使用的是druid，所以需要排除-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.zaxxer</groupId>
+                    <artifactId>HikariCP</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- mysql -->
+        <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+
+        <!-- mybatis-plus -->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-spring-boot3-starter</artifactId>
+            <version>3.5.15</version>
+        </dependency>
+
+        <!-- SqlParser 是一个常用的 SQL 解析工具，用于动态 SQL 生成、SQL 拦截器等功能 -->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-jsqlparser</artifactId>
+            <version>3.5.15</version>
+        </dependency>
+
+        <!-- Java 中用于对象关系映射（ORM）的标准 API。它通过注解和实体类将 Java 对象映射到数据库表，简化了数据库交互 -->
+        <dependency>
+            <groupId>jakarta.persistence</groupId>
+            <artifactId>jakarta.persistence-api</artifactId>
+            <version>3.1.0</version>
+        </dependency>
+
+        <!--
+    Sentinel 是面向分布式、多语言异构化服务架构的流量治理组件，主要以流量为切入点，从流量路由、流量控制、流量整形、熔断降级、
+    系统自适应过载保护、热点流量防护等多个维度来帮助开发者保障微服务的稳定性
+        -->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
+        </dependency>
+
+        <!-- Lombok是一款高效的Java开发工具，通过注解自动生成getter/setter、构造方法、日志等代码，大幅减少样板代码量。-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+            <version>1.18.42</version>
+        </dependency>
+
+        <!--  Swagger-UI 的增强版框架，旨在优化和美化 API 文档的管理和展示 -->
+        <dependency>
+            <groupId>com.github.xiaoymin</groupId>
+            <artifactId>knife4j-openapi3-jakarta-spring-boot-starter</artifactId>
+            <version>4.3.0</version>
+        </dependency>
+
+        <!-- 远程服务调用 -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+            <version>4.3.1</version>
+        </dependency>
+
+        <!--
+    Spring Cloud Starter LoadBalancer 是 Spring Cloud 提供的一个轻量级负载均衡解决方案，用于在微服务架构中实现服务间的高效通信
+        -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-loadbalancer</artifactId>
+        </dependency>
+
+        <!--
+    简化和增强 Spring Boot 应用程序测试的依赖包。它包含了大多数常用的测试库和工具，帮助开发人员编写和运行单元测试、集成测试等
+        -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!--
+    Hutool 是一个 小而全的Java工具类库，通过静态方法封装JDK常用功能，降低API学习成本、提升开发效率，让Java代码更简洁优雅。
+    它涵盖了字符串、日期、IO、加密、HTTP、JSON等多个领域，既适合大型项目解决细节问题，也能在小型项目中快速落地。
+        -->
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-core</artifactId>
+            <version>5.8.38</version>
+        </dependency>
+    </dependencies>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>2023.0.6</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>2023.0.1.0</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <!--
+                    maven-compiler-plugin:用于编译项目代码的 Maven 插件。
+                    它允许开发者指定项目源码和目标编译的 JDK 版本，以及编码格式;
+                    从而确保项目在不同环境下编译的一致性.
+                -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.0</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+
+            </plugin>
+
+            <plugin>
+                <!--
+                    Spring Boot Maven Plugin 是一个用于支持 Spring Boot 应用的 Maven 插件。
+                    它可以将 Spring Boot 应用打包为可执行的 JAR 或 WAR 文件，并提供多种功能来简
+                    化 Spring Boot 应用的构建和部署过程
+                -->
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <excludes>  <!--排除lombok -->
+                        <exclude>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </exclude>
+                    </excludes>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
