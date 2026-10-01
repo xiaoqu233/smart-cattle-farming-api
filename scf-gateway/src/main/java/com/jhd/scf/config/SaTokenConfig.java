@@ -33,6 +33,7 @@ public class SaTokenConfig {
                     // 登录校验：拦截所有路由，并排除 /user/login 用于开放登录
                     SaRouter.match("/**", "/api/auth/login", r -> StpUtil.checkLogin());
                     SaRouter.match("/**", "/api/auth/test", r -> StpUtil.checkLogin());
+                    SaRouter.match("/**", "/api/auth/test/login", r -> StpUtil.checkLogin());
                 })
                 // 异常处理方法：每次setAuth函数出现异常时进入
                 .setError(e -> {
