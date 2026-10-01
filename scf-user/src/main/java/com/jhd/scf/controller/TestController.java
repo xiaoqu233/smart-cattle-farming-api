@@ -5,9 +5,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RequestMapping
+import java.util.UUID;
+
 @RestController
-public class UserController {
+@RequestMapping("/test")
+public class TestController {
 
     @GetMapping
     public Object login() {
@@ -18,5 +20,15 @@ public class UserController {
         String tokenValue = StpUtil.getTokenValue();
 
         return tokenValue;
+    }
+
+    /**
+     * 远程调用测试接口
+     *
+     * @return
+     */
+    @GetMapping("/info")
+    public String info() {
+        return "user service:" + UUID.randomUUID().toString();
     }
 }
