@@ -35,6 +35,7 @@
     </properties>
 
     <dependencies>
+
         <!-- Web场景启动器 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -159,6 +160,13 @@ bootstrap.properties或bootstrap.yaml配置文件，就必须引入这个依赖�
         <dependency>
             <groupId>com.github.xiaoymin</groupId>
             <artifactId>knife4j-openapi3-jakarta-spring-boot-starter</artifactId>
+            <version>4.3.0</version>
+        </dependency>
+
+        <!--  Swagger-UI 的增强版框架，旨在优化和美化 API 文档的管理和展示 -->
+        <dependency>
+            <groupId>com.github.xiaoymin</groupId>
+            <artifactId>knife4j-gateway-spring-boot-starter</artifactId>
             <version>4.3.0</version>
         </dependency>
 
