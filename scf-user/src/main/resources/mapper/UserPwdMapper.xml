@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace 必须写 Mapper 接口的全限定名 -->
+<mapper namespace="com.jhd.scf.mapper.UserPwdMapper">
+    <select id="selectByUserId" resultType="com.jhd.scf.entity.UserPwd" parameterType="java.lang.Long">
+        SELECT
+        id,
+        user_id,
+        pwd,
+        salt
+        FROM user_pwd
+        WHERE user_id = #{userId}
+    </select>
+</mapper>

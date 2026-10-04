@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace 必须写 Mapper 接口的全限定名 -->
+<mapper namespace="com.jhd.scf.mapper.UserMapper">
+    <delete id="deleteById" parameterType="java.lang.Long">
+        UPDATE `user`
+        SET delete_flag = "del"
+        WHERE id = #{userId}
+    </delete>
+
+    <!-- 用户查询 -->
+    <select id="query" resultType="com.jhd.scf.entity.User">
+        SELECT
+        id,
+        tenant_id,
+        user_no,
+        dept_id,
+        user_name,
+        phone,
+        sex,
+        bithday,
+        address,
+        wotk_state,
+        user_state,
+        entry_time,
+        resignation_time,
+        referrer_id,
+        create_time,
+        update_time,
+        version,
+        email,
+        `status`,
+        remark,
+        user_type
+        FROM `user`
+        <where>
+            <!-- 每个条件用 AND 开头，<where> 会自动去掉第一个 -->
+            <if test="query.deptId != null and query.deptId != ''">
+                AND dept_id = #{query.deptId}
+            </if>
+            <if test="query.userName != null and query.userName != ''">
+                AND user_name LIKE CONCAT('%', #{query.userName}, '%')
+            </if>
+            <if test="query.phone != null and query.phone != ''">
+                AND phone = #{query.phone}
+            </if>
+            <if test="query.userType != null and query.userType != ''">
+                AND user_type = #{query.userType}
+            </if>
+            <!-- 固定条件，注意用单引号 -->
+            AND delete_flag = 'ok'
+        </where>
+    </select>
+
+    <select id="selectByPhone" resultType="com.jhd.scf.entity.User" parameterType="java.lang.String">
+        SELECT
+        id,
+        tenant_id,
+        user_no,
+        dept_id,
+        user_name,
+        phone,
+        sex,
+        bithday,
+        address,
+        wotk_state,
+        user_state,
+        entry_time,
+        resignation_time,
+        rferrer_id,
+        create_time,
+        update_time,
+        version,
+        email,
+        `status`,
+        remark,
+        user_type
+        FROM `user`
+        WHERE phone = #{phone} and delete_flag = 'ok'
+    </select>
+</mapper>

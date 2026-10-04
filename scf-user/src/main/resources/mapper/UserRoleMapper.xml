@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace 必须写 Mapper 接口的全限定名 -->
+<mapper namespace="com.jhd.scf.mapper.UserRoleMapper">
+    <insert id="insertBatch">
+        INSERT INTO user_role (user_id, role_id) values
+        <foreach collection="roleIds" item="id" separator=",">
+            (#{userId}, #{id})
+        </foreach>
+    </insert>
+
+    <delete id="deleteByUserId">
+        DELETE FROM user_role
+        WHERE user_id = #{userId}
+    </delete>
+
+    <select id="selectByUserId" resultType="java.lang.Long">
+        SELECT role_id
+        FROM user_role
+        WHERE user_id = #{userId}
+    </select>
+</mapper>
