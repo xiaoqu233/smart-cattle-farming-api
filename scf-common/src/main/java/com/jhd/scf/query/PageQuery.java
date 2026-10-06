@@ -12,5 +12,5 @@ public class PageQuery {
     private int page = 1;
 
     @Schema(description = "每页显示数量", requiredMode = Schema.RequiredMode.REQUIRED)
-    private int Size = 10;
+    private int size = 10;
 }

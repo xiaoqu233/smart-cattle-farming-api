@@ -57,11 +57,11 @@ public class Res<T> implements Serializable {
         return Res.builder().code(400).data(null).msg(msg).build();
     }
 
-    private static Res error(int code, String msg) {
+    public static Res error(int code, String msg) {
         return Res.builder().code(code).data(null).msg(msg).build();
     }
 
-    private static Res error(String msg, Object data) {
+    public static Res error(String msg, Object data) {
         return Res.builder().code(400).data(data).msg(msg).data(data).build();
     }
 }

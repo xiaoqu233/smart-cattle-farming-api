@@ -29,7 +29,7 @@ public class UserRoleServiceImpl implements UserRoleService {
         userRoleMapper.deleteByUserId(userId);
 
         if (!roleIds.isEmpty()) {
-            // 添加用户橘色
+            // 添加用户角色
             userRoleMapper.insertBatch(userId, roleIds);
         }
 
@@ -45,6 +45,6 @@ public class UserRoleServiceImpl implements UserRoleService {
     @Override
     public Res<List<Long>> userRole(Long userId) {
         List<Long> list = userRoleMapper.selectByUserId(userId);
-        return null;
+        return Res.success(list);
     }
 }
